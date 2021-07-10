@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Models\Shop;
+use Illuminate\Support\Facades\DB;
 
 class ShopsController extends Controller
 {
@@ -13,7 +15,11 @@ class ShopsController extends Controller
      */
     public function index()
     {
-        //
+        $items=Shop::all();
+        return response()->json([
+            'message'=>'OK',
+            'data'=>$items
+        ],200);
     }
 
     /**
@@ -33,9 +39,23 @@ class ShopsController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
+    //public function show(Shop $shop)
     public function show($id)
     {
-        //
+        $shop = Shop::where('id', $id)->first();
+        //var_dump($item);
+        $area = DB::table('areas')->where('id',$shop->area_id)->first();
+
+        return response()->json($shop, 200);
+        //return response()->json($shop, 200);
+        // var_dump($item);
+        // exit;
+        // $name=$shop->name;
+        // $area = DB::table('areas')->where('id',$shop->area_id)->get();
+        // $genre = DB::table('genre')->where('id',$shop->genre_id)->get();
+        // // $detail=Shop::where('detail',$shop->detail)->get();
+        // $image=Shop::where('image',$shop->image)->get();
+        //return response()->json($shop, 200);
     }
 
     /**

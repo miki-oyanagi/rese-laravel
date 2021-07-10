@@ -10,10 +10,10 @@ use Carbon\Carbon;
 
 class UsersController extends Controller
 {
-    public function store(Request $request)
+    public function post(Request $request)
     {
         $now= Carbon::now();
-        // $password=Hash::make($request->password);
+        $password=Hash::make($request->password);
         $param=[
             "user_name"=> $request->user_name,
             "email"=>$request->email,
@@ -52,9 +52,10 @@ class UsersController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show($user)
     {
-        //
+        $username=$user->user_name;
+   
     }
 
     /**
@@ -68,6 +69,7 @@ class UsersController extends Controller
     {
         //
     }
+
 
     /**
      * Remove the specified resource from storage.
