@@ -29,8 +29,8 @@ class LoginController extends Controller
 //         ],200);
 // exit;
 
-        $hashed = Hash::make($request->password);
-        if(Hash::check($items->password,$hashed)){
+        // $hashed = Hash::make($request->password);
+        if(Hash::check($request->password,$items->password)){
             return response()->json(['auth'=>true,
              'user'=>$items
         ],200);
