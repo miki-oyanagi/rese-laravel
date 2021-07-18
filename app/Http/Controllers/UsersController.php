@@ -12,19 +12,19 @@ class UsersController extends Controller
 {
     public function post(Request $request)
     {
-        $now= Carbon::now();
-        $password=Hash::make($request->password);
-        $param=[
-            "user_name"=> $request->user_name,
-            "email"=>$request->email,
-            "password"=>$request->password,
-        ];
+        // $now= Carbon::now();
+        // $hashed=Hash::make($request->password);
+        // $param=[
+        //     "user_name"=> $request->user_name,
+        //     "email"=>$request->email,
+        //     "password"=>$request->password,
+        // ];
 
-        DB::table('users')->insert($param);
-        return response()->json([
-            'message'=>'OK',
-            'data'=>$param
-        ],200);
+        // DB::table('users')->insert($param);
+        // return response()->json([
+        //     'message'=>'OK',
+        //     'data'=>$param
+        // ],200);
         // if($param){
         //     return response(view('thankspage'),200);
         // }else{
@@ -52,9 +52,17 @@ class UsersController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($user)
+    public function get(Request $request)
     {
-        $username=$user->user_name;
+        if($request->has('email')){
+            $items =DB::table('users')->where('email',$request->email)->get();
+            return response()->json([
+                'message'=>'User got successfully',
+                'data'=>$items
+            ],200);
+        }else{
+            return response()->json(['stataus'=>'not found'],400);
+        }
    
     }
 
