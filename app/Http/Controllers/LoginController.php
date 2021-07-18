@@ -32,7 +32,7 @@ class LoginController extends Controller
         $hashed = Hash::make($request->password);
         if(Hash::check($items->password,$hashed)){
             return response()->json(['auth'=>true,
-            //  'user'=>$items
+             'user'=>$items
         ],200);
         }else{
             return response()->json(['auth'=>false],200);
