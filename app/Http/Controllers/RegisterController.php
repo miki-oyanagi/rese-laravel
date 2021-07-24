@@ -18,8 +18,8 @@ class RegisterController extends Controller
             "user_name"=> $request->user_name,
             "email"=>$request->email,
             "password"=>$password,
-            // "create_at"=>$now,
-            // "updated_at"=>$now,
+            "created_at"=>$now,
+            "updated_at"=>$now,
         ];
 
         DB::table('users')->insert($param);

@@ -12,27 +12,27 @@ class UsersController extends Controller
 {
     public function post(Request $request)
     {
-        // $now= Carbon::now();
-        // $hashed=Hash::make($request->password);
-        // $param=[
-        //     "user_name"=> $request->user_name,
-        //     "email"=>$request->email,
-        //     "password"=>$request->password,
-        // ];
+        $now= Carbon::now();
+        $hashed=Hash::make($request->password);
+        $param=[
+            "user_name"=> $request->user_name,
+            "email"=>$request->email,
+            "password"=>$request->password,
+        ];
 
-        // DB::table('users')->insert($param);
-        // return response()->json([
-        //     'message'=>'OK',
-        //     'data'=>$param
-        // ],200);
-        // if($param){
-        //     return response(view('thankspage'),200);
-        // }else{
-        //     return response()->json(
-        //         ['message'=>'Already registated',
-        //          'data'=>$param
-        //     ],404);
-        // }
+        DB::table('users')->insert($param);
+        return response()->json([
+            'message'=>'OK',
+            'data'=>$param
+        ],200);
+        if($param){
+            return response(view('thankspage'),200);
+        }else{
+            return response()->json(
+                ['message'=>'Already registated',
+                 'data'=>$param
+            ],404);
+        }
     }
 
     /**

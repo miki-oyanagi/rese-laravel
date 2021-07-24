@@ -11,14 +11,12 @@ use App\Http\Controllers\ReservationsController;
 
 
 
-Route::post('/v1/users/registration',[UsersController::class,'post']);
+// Route::post('/v1/users/registration',[UsersController::class,'post']);
 
-Route::post('users/registration',[RegisterController::class,'post']);
-// Route::get('/v1/users',[LoginController::class,'post']);
+Route::post('/v1/users/registration',[RegisterController::class,'post']);
+Route::get('/v1/users',[UsersController::class,'get']);
 Route::post('/v1/login',[LoginController::class,'post']);
-// Route::get('/v1/users',[LoginController::class,'get']);
-
-
+// Route::get('/v1/shops',[ShopsController::class,'index']);
 Route::apiResource('/v1/shops',ShopsController::class);
 
 
