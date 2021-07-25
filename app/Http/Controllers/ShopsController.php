@@ -16,6 +16,10 @@ class ShopsController extends Controller
     public function index()
     {
         $items=Shop::all();
+        #$items = $users->leftJoin('message', 'users.id', '=', 'message.user_id')->get();
+        $areas = Shop::all();
+
+
         return response()->json([
             'message'=>'OK',
             'data'=>$items
