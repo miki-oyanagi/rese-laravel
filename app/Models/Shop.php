@@ -1,9 +1,10 @@
 <?php
 
 namespace App\Models;
-
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use App\Models\Area;
+use App\Models\Genre;
 
 class Shop extends Model
 {
@@ -20,15 +21,15 @@ class Shop extends Model
         ],200);
     }
 
-    public function areas()
+    public function area()
     {
-      return $this->belongsTo('App\Area');
+      return $this->belongsTo('App\Models\Area');
     }
 
 
 
-    public function genres()
+    public function genre()
     {
-      return $this->belongsTo('App\Genre');
+      return $this->belongsTo('App\Models\Genre');
     }
 }
