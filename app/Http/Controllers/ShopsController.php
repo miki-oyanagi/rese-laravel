@@ -69,6 +69,10 @@ class ShopsController extends Controller
     {
         //
     }
+    public function detail(Request $request, $id)
+    {
+        $detail_list = Shop::all();
+    }
 
     /**
      * Remove the specified resource from storage.

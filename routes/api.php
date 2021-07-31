@@ -18,5 +18,6 @@ Route::get('/v1/users',[UsersController::class,'get']);
 Route::post('/v1/login',[LoginController::class,'post']);
 // Route::get('/v1/shops',[ShopsController::class,'index']);
 Route::apiResource('/v1/shops',ShopsController::class);
+// Route::get('/v1/shops/:id',[ShopsController::class,'detail']);
 
 
