@@ -15,7 +15,7 @@ class ShopsController extends Controller
      */
     public function index()
     {
-        $items=Shop::all()->with('area','genre')->get();
+        $items=Shop::with('area','genre')->get();
         return response()->json([
             'message'=>'OK',
             'data'=>$items
@@ -40,7 +40,7 @@ class ShopsController extends Controller
      * @return \Illuminate\Http\Response
      */
     //public function show(Shop $shop)
-    public function show(Request $request)
+    public function show(Request $request,$id)
     {
  
         $detail = Shop::with('area','genre')->get();
@@ -48,6 +48,16 @@ class ShopsController extends Controller
             'message'=>'OK',
             'data'=>$detail
         ],200);
+
+    
+         $detaildata = Shop::with('area','genre')->find($id)->get();
+         return response()->json([
+         'message'=>'OK',
+         'data'=>$detaildata
+         ],200);
+
+
+
         // $shop = Shop::where('id', $id)->first();
         // //var_dump($item);
         // $area = DB::table('areas')->where('id',$shop->area_id)->first();
@@ -74,14 +84,6 @@ class ShopsController extends Controller
     public function update(Request $request, $id)
     {
         //
-    }
-    public function detail(Request $request, $id)
-    {
-        $detaildata = Shop::where($id)->with('area','genre')->get();
-        return response()->json([
-            'message'=>'OK',
-            'data'=>$detaildata
-        ],200);
     }
 
     /**
