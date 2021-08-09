@@ -19,7 +19,7 @@ class CreateReservationsTable extends Migration
             $table->foreignId('user_id')->constrained();
             $table->date('reservation_date');
             $table->time('reservation_time');
-            $table->init('reservation_number');
+            $table->string('reservation_number');
             $table->timestamps();
         });
     }

@@ -32,4 +32,9 @@ class Shop extends Model
     {
       return $this->belongsTo('App\Models\Genre');
     }
+
+    public function likes()
+    {
+      return $this->hasMany('App\Models\Like');
+    }
 }

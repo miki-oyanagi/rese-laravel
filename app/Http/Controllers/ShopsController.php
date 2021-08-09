@@ -42,15 +42,10 @@ class ShopsController extends Controller
     //public function show(Shop $shop)
     public function show(Request $request,$id)
     {
- 
-        $detail = Shop::with('area','genre')->get();
-        return response()->json([
-            'message'=>'OK',
-            'data'=>$detail
-        ],200);
+
 
     
-         $detaildata = Shop::with('area','genre')->find($id)->get();
+         $detaildata = Shop::where('id',$id)->with('area','genre')->first();
          return response()->json([
          'message'=>'OK',
          'data'=>$detaildata

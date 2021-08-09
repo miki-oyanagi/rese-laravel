@@ -19,5 +19,9 @@ Route::post('/v1/login',[LoginController::class,'post']);
 // Route::get('/v1/shops',[ShopsController::class,'index']);
 Route::apiResource('/v1/shops',ShopsController::class);
 // Route::get('/v1/shops/:id',[ShopsController::class,'detail']);
+Route::post('/v1/shops/{shop_id}/like',[LikesController::class,'post']);
+
+Route::get('/v1/shops/{shop_id}/like',[LikesController::class,'first_check']);
+Route::put('/v1/shops/{shop_id}/like',[LikesController::class,'check']);
 
 
