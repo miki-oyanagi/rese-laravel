@@ -10,7 +10,7 @@ class Word extends Model
 
     public function likes()
     {
-      return $this->hasMany('App\Models\Like');
+      return $this->belongToMany('App\Models\Like');
     }
 }
 

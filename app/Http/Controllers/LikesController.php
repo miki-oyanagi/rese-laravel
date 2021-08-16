@@ -15,22 +15,22 @@ class LikesController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function first_check($shop)
-    {
-        $user =Auth::user();
-        $likes = new Like();
-        $like =Like::where('shop_id',$shop)->where('user_id',$user->id)->get();
-        if($like){
-            $count = $likes->where('shop_id',$shop)->where('like',1)->count();
-            return [$like->like,$count];
-        }else{
-            $like = $likes->create([
-                'user_id'=>$user->id,
-                'shop_id'=>$shop,
-                'like'=>0
-            ]);
-        }
-    }
+    // public function first_check($shop)
+    // {
+    //     // $user =Auth::user();
+    //     $likes = new Like();
+    //     $like =Like::where('shop_id',$shop)->where('user_id',$user->id)->get();
+    //     if($like){
+    //         $count = $likes->where('shop_id',$shop)->where('like',1)->count();
+    //         return [$like->like,$count];
+    //     }else{
+    //         $like = $likes->create([
+    //             'user_id'=>$user->id,
+    //             'shop_id'=>$shop,
+    //             'like'=>0
+    //         ]);
+    //     }
+    // }
 
     /**
      * Store a newly created resource in storage.
@@ -60,18 +60,16 @@ class LikesController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function check($shop)
+    public function index()
     {
-        $user=Auth::user();
-        $likes=new Like();
-        $like=Like::where('shop_id',$shop)->where('user_id',$user->id)->first();
-        if($like->like == 1){
-            $like->like = 0;
-            $like->save();
-        }else{
-            $like->like = 1;
-            $like->save();
-        }
+        // $user=Auth::user();
+        // $likes=new Like();
+        $likesdata=DB::table('likes')->get();
+
+        return response()->json([
+            'message'=>'OK',
+            'data'=>$likesdata
+            ],200);
     }
 
     /**
