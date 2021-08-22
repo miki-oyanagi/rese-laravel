@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Carbon\Carbon;
 use App\Models\Like;
+use App\Models\User;
 use Illuminate\Support\Facades\Auth;
 
 class LikesController extends Controller
@@ -60,11 +61,10 @@ class LikesController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
-        // $user=Auth::user();
-        // $likes=new Like();
-        $likesdata=DB::table('likes')->get();
+        $user_id=$request->user_id;
+        $likesdata=DB::table('likes')->where('user_id',$user_id)->get();
 
         return response()->json([
             'message'=>'OK',
@@ -92,9 +92,13 @@ class LikesController extends Controller
      */
     public function delete(Request $request)
     {
-        DB::table('likes')->where('shop_id',$request->shop_id)->where('user_id',$request->user_id)->delete();
+
+        $dislikedata=DB::table('likes')->where('user_id',$request->user_id)->where('shop_id',$request->shop_id)->delete();
         return response()->json([
-            'message'=> 'Like deleted'
+            'message'=> 'Like deleted',
+            'data'=>$dislikedata
+
         ],200);
+
     }
 }

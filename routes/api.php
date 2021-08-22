@@ -22,6 +22,7 @@ Route::apiResource('/v1/shops',ShopsController::class);
 Route::post('/v1/shops/{shop_id}/like',[LikesController::class,'post']);
 
 // Route::get('/v1/shops/{shop_id}/like',[LikesController::class,'first_check']);
-Route::get('/v1/likes',[LikesController::class,'index']);
+Route::post('/v1/likes',[LikesController::class,'index']);
+Route::delete('/v1/likes',[LikesController::class,'delete']);
 
 
