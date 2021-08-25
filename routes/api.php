@@ -19,10 +19,14 @@ Route::post('/v1/login',[LoginController::class,'post']);
 // Route::get('/v1/shops',[ShopsController::class,'index']);
 Route::apiResource('/v1/shops',ShopsController::class);
 // Route::get('/v1/shops/:id',[ShopsController::class,'detail']);
-Route::post('/v1/shops/{shop_id}/like',[LikesController::class,'post']);
+Route::post('/v1/shops/{shop_id}/likes',[LikesController::class,'post']);
 
 // Route::get('/v1/shops/{shop_id}/like',[LikesController::class,'first_check']);
 Route::post('/v1/likes',[LikesController::class,'index']);
 Route::delete('/v1/likes',[LikesController::class,'delete']);
+
+Route::get('/v1/reservations',[ReservationsController::class,'index']);
+Route::post('/v1/{shop_id}/reservations',[ReservationsController::class,'post']);
+
 
 

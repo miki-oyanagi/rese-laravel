@@ -3,6 +3,9 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Carbon\Carbon;
+use App\Models\Reservation;
+use Illuminate\Support\Facades\DB;
 
 class ReservationsController extends Controller
 {
@@ -13,7 +16,11 @@ class ReservationsController extends Controller
      */
     public function index()
     {
-        //
+        $items=Reservation::all();
+        return response()->json([
+          'message'=>'OK',
+          'data'=>$items
+        ],200);
     }
 
     /**
@@ -22,9 +29,23 @@ class ReservationsController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function post(Request $request)
     {
-        //
+        $now =Carbon::now();
+        $book =[
+            "user_id"=>$request->user_id,
+            "shop_id"=>$request->shop_id,
+            "reservation_date"=>$request->bookingDate,
+            "reservation_time"=>$request->bookingTime,
+            "reservation_number"=>$request->bookingNumber,
+            "created_at"=>$now,
+            "updated_at"=>$now
+        ];
+        DB::table('reservations')->insert($book);
+        return response()->json([
+            'message'=>'book done',
+            'data'=>$book
+        ],200);
     }
 
     /**

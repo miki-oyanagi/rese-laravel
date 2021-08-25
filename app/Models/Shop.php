@@ -37,4 +37,9 @@ class Shop extends Model
     {
       return $this->belongToMany('App\Models\Like');
     }
+
+    public function reservation()
+    {
+      return $this->belongsTo('App\Models\Reservation');
+    }
 }
