@@ -35,9 +35,9 @@ class ReservationsController extends Controller
         $book =[
             "user_id"=>$request->user_id,
             "shop_id"=>$request->shop_id,
-            "reservation_date"=>$request->bookingDate,
-            "reservation_time"=>$request->bookingTime,
-            "reservation_number"=>$request->bookingNumber,
+            "reservation_date"=>$request->reservation_date,
+            "reservation_time"=>$request->reservation_time,
+            "reservation_number"=>$request->reservation_number,
             "created_at"=>$now,
             "updated_at"=>$now
         ];

@@ -47,7 +47,7 @@ class ShopsController extends Controller
     
          $detaildata = Shop::where('id',$id)->with('area','genre')->first();
          return response()->json([
-         'message'=>'OK',
+        //  'message'=>'OK',
          'data'=>$detaildata
          ],200);
 

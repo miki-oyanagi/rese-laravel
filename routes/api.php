@@ -26,7 +26,7 @@ Route::post('/v1/likes',[LikesController::class,'index']);
 Route::delete('/v1/likes',[LikesController::class,'delete']);
 
 Route::get('/v1/reservations',[ReservationsController::class,'index']);
-Route::post('/v1/{shop_id}/reservations',[ReservationsController::class,'post']);
+Route::post('/v1/reservations',[ReservationsController::class,'post']);
 
 
 

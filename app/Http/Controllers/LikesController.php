@@ -42,16 +42,16 @@ class LikesController extends Controller
     public function post(Request $request)
     {
        $now =Carbon::now();
-       $param =[
-           "user_id"=>$request->user_id,
-           "shop_id"=>$request->shop_id,
-           "created_at"=>$now,
-           "updated_at"=>$now
-       ];
-       DB::table('likes')->insert($param);
+    //    $param =[
+    //        "user_id"=>$request->user_id,
+    //        "shop_id"=>$request->shop_id,
+    //        "created_at"=>$now,
+    //        "updated_at"=>$now
+    //    ];
+    //    DB::table('likes')->insert($param);
        return response()->json([
            'message'=>'Like created',
-           'data'=>$param
+           'data'=>$request->user_id
        ],200);
     }
 
@@ -99,7 +99,7 @@ class LikesController extends Controller
         // $data=DB::table('likes')->where('user_id',$request->user_id)->where('shop_id',$request->shop_id)->delete();
         return response()->json([
             'message'=> 'Like deleted',
-            'data'=>$data,
+            'data'=>$data
 
         ],200);
 
