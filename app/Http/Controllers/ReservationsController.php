@@ -14,9 +14,9 @@ class ReservationsController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
-    {
-        $items=Reservation::all();
+    public function index(Request $request)
+    {   $user_id=$request->user_id;
+        $items=Reservation::where('user_id',$user_id)->with('shop')->get();
         return response()->json([
           'message'=>'OK',
           'data'=>$items

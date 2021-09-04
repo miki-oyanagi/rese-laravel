@@ -4,6 +4,8 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use App\Models\Shop;
+
 
 class Like extends Model
 {
@@ -16,7 +18,7 @@ class Like extends Model
 
     public function shop()
     {
-        return $this->belongsTo(Shop::class,"shop_id");
+        return $this->belongsTo('App\Models\Shop');
     }
 
     protected $fillable =[

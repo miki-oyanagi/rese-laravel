@@ -11,21 +11,23 @@ use App\Http\Controllers\ReservationsController;
 
 
 
-// Route::post('/v1/users/registration',[UsersController::class,'post']);
+
 
 Route::post('/v1/users/registration',[RegisterController::class,'post']);
 Route::get('/v1/users',[UsersController::class,'get']);
 Route::post('/v1/login',[LoginController::class,'post']);
-// Route::get('/v1/shops',[ShopsController::class,'index']);
+
+Route::post('/v1/like',[LikesController::class,'post']);
 Route::apiResource('/v1/shops',ShopsController::class);
-// Route::get('/v1/shops/:id',[ShopsController::class,'detail']);
-Route::post('/v1/shops/{shop_id}/likes',[LikesController::class,'post']);
 
-// Route::get('/v1/shops/{shop_id}/like',[LikesController::class,'first_check']);
+Route::post('/v1/getshops',[ShopsController::class,'get']);
+
+
+
 Route::post('/v1/likes',[LikesController::class,'index']);
-Route::delete('/v1/likes',[LikesController::class,'delete']);
+Route::delete('/v1/like',[LikesController::class,'delete']);
 
-Route::get('/v1/reservations',[ReservationsController::class,'index']);
+Route::post('/v1/mypage/reservations',[ReservationsController::class,'index']);
 Route::post('/v1/reservations',[ReservationsController::class,'post']);
 
 

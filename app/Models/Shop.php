@@ -5,6 +5,8 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use App\Models\Area;
 use App\Models\Genre;
+use App\Models\Like;
+use App\Http\Controllers\ReservationsController;
 
 class Shop extends Model
 {
@@ -35,7 +37,7 @@ class Shop extends Model
 
     public function likes()
     {
-      return $this->belongToMany('App\Models\Like');
+      return $this->hasMany('App\Models\Like');
     }
 
     public function reservation()

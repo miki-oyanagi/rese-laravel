@@ -6,7 +6,10 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Carbon\Carbon;
 use App\Models\Like;
+use App\Models\Shop;
 use App\Models\User;
+use App\Models\Area;
+use App\Models\Genre;
 use Illuminate\Support\Facades\Auth;
 
 class LikesController extends Controller
@@ -42,16 +45,16 @@ class LikesController extends Controller
     public function post(Request $request)
     {
        $now =Carbon::now();
-    //    $param =[
-    //        "user_id"=>$request->user_id,
-    //        "shop_id"=>$request->shop_id,
-    //        "created_at"=>$now,
-    //        "updated_at"=>$now
-    //    ];
-    //    DB::table('likes')->insert($param);
+       $param =[
+           "user_id"=>$request->user_id,
+           "shop_id"=>$request->shop_id,
+           "created_at"=>$now,
+           "updated_at"=>$now
+       ];
+       DB::table('likes')->insert($param);
        return response()->json([
            'message'=>'Like created',
-           'data'=>$request->user_id
+           'data'=>$param
        ],200);
     }
 
@@ -63,8 +66,11 @@ class LikesController extends Controller
      */
     public function index(Request $request)
     {
+
         $user_id=$request->user_id;
-        $likesdata=DB::table('likes')->where('user_id',$user_id)->get();
+        $likesdata=Like::where('user_id',$user_id)->with(['shop'=>function($query){
+            $query->with('area','genre');
+        }])->get();
 
         return response()->json([
             'message'=>'OK',

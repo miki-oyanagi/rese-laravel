@@ -76,9 +76,16 @@ class ShopsController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function get(Request $request)
     {
-        //
+        // $user_id=$request->user_id;
+        $id=$request->id;
+        $getlikes=Shop::where('id',$id)->get();
+        return response()->json([
+            // 'message'=>'OK',
+            'data'=>$getlikes
+            ],200);
+
     }
 
     /**
